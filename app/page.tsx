@@ -22,7 +22,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <div className="flex items-center gap-3 mb-8">
-            <Image src="/logo.svg" alt="棲地無界" width={44} height={44} className="drop-shadow-lg" />
+            <Image src="/logo.png" alt="棲地無界" width={44} height={44} className="drop-shadow-lg" />
             <span className="text-lg font-semibold text-white/90 tracking-wide">棲地無界 WHV</span>
           </div>
 

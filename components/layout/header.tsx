@@ -15,7 +15,7 @@ export function Header() {
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
-            <Image src="/logo.svg" alt="棲地無界" width={36} height={36} className="shrink-0" />
+            <Image src="/logo.png" alt="棲地無界" width={36} height={36} className="shrink-0" />
             <div className="min-w-0">
               <p className="truncate text-sm font-bold text-[var(--ink)]">棲地無界</p>
               <p className="truncate text-xs text-[var(--muted-ink)]">WHV 打工度假知識庫</p>

@@ -14,7 +14,7 @@ export function Sidebar({ countries }: { countries: Country[] }) {
       <div className="space-y-8">
         <div className="space-y-3 rounded-[28px] border border-[var(--line)] bg-[var(--card)] p-5">
           <div className="flex items-center gap-2">
-            <Image src="/logo.svg" alt="" width={24} height={24} />
+            <Image src="/logo.png" alt="" width={24} height={24} />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand)]">棲地無界 / WHV</p>
           </div>
           <h2 className="text-xl font-bold text-[var(--ink)]">先決定入口，再往下展開內容與互動。</h2>
