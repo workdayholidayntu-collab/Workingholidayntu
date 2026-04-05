@@ -35,7 +35,7 @@ export default async function CountryPage({ params }: { params: Promise<{ slug: 
           <div className="flex items-end justify-between gap-3">
             <div>
               <Badge>過來人文章</Badge>
-              <h2 className="mt-2 text-2xl font-semibold text-[var(--ink)]">{country.name_zh} 的最新實戰筆記</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[var(--ink)]">{country.name_zh} 的最新實戰筆記</h2>
             </div>
           </div>
           <div className="grid gap-4">

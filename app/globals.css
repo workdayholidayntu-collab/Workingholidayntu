@@ -1,27 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8f2e9;
-  --foreground: #241b16;
-  --card: rgba(255, 251, 246, 0.92);
-  --line: rgba(83, 56, 33, 0.12);
-  --ink: #241b16;
-  --muted-ink: #6f5a49;
-  --sand: #f0e0cb;
-  --brand: #a4552c;
-  --brand-strong: #7d3d1e;
+  --background: #f4f8fb;
+  --foreground: #1a2a3a;
+  --card: rgba(255, 255, 255, 0.92);
+  --line: rgba(0, 60, 120, 0.10);
+  --ink: #1a2a3a;
+  --muted-ink: #5a7a8f;
+  --sand: #e4f0f6;
+  --brand: #0086CC;
+  --brand-strong: #006aa5;
+  --sky-light: #BCE1DF;
+  --sky-mid: #8AC4DE;
+  --sky-deep: #6C9BD2;
+  --sky-muted: #B8C8D1;
+  --sky-dusk: #8491C3;
 }
 
 .dark {
-  --background: #1d1714;
-  --foreground: #f7ece0;
-  --card: rgba(41, 31, 26, 0.92);
-  --line: rgba(243, 224, 204, 0.12);
-  --ink: #f7ece0;
-  --muted-ink: #d0b8a4;
-  --sand: rgba(112, 74, 44, 0.28);
-  --brand: #dc8f5f;
-  --brand-strong: #f5ab79;
+  --background: #111a24;
+  --foreground: #e4f0f6;
+  --card: rgba(22, 34, 48, 0.92);
+  --line: rgba(188, 225, 223, 0.12);
+  --ink: #e4f0f6;
+  --muted-ink: #9fbfcc;
+  --sand: rgba(0, 134, 204, 0.14);
+  --brand: #8AC4DE;
+  --brand-strong: #BCE1DF;
+  --sky-light: rgba(188, 225, 223, 0.18);
+  --sky-mid: rgba(138, 196, 222, 0.22);
+  --sky-deep: rgba(108, 155, 210, 0.25);
+  --sky-muted: rgba(184, 200, 209, 0.18);
+  --sky-dusk: rgba(132, 145, 195, 0.22);
 }
 
 @theme inline {
@@ -42,8 +52,8 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top right, rgba(222, 169, 118, 0.24), transparent 30%),
-    radial-gradient(circle at left 20%, rgba(207, 143, 90, 0.18), transparent 28%),
+    radial-gradient(circle at top right, var(--sky-light), transparent 35%),
+    radial-gradient(circle at left 20%, var(--sky-mid), transparent 30%),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);

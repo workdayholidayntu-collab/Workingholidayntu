@@ -8,7 +8,7 @@ export function Avatar({
   return (
     <div
       className={cn(
-        "flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,#f2d6b5,#cf8f5a)] text-sm font-semibold text-[var(--ink)]",
+        "flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sky-light),var(--sky-deep))] text-sm font-semibold text-white",
         className,
       )}
     >

@@ -2,7 +2,7 @@ import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
 import { PlatformBanner } from "@/components/layout/platform-banner"
 import { Sidebar } from "@/components/layout/sidebar"
-import { getCountries, getCurrentViewer } from "@/lib/data"
+import { getCountries } from "@/lib/data"
 import { getPlatformStatus } from "@/lib/platform-status"
 
 export default async function MainLayout({
@@ -10,12 +10,12 @@ export default async function MainLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const [countries, viewer, status] = await Promise.all([getCountries(), getCurrentViewer(), getPlatformStatus()])
+  const [countries, status] = await Promise.all([getCountries(), getPlatformStatus()])
 
   return (
     <div className="min-h-screen">
       <PlatformBanner status={status} />
-      <Header viewer={viewer} />
+      <Header />
       <div className="mx-auto flex max-w-7xl">
         <Sidebar countries={countries} />
         <div className="min-w-0 flex-1">

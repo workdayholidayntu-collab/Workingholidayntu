@@ -10,6 +10,7 @@ declare module "lucide-react" {
   export const Earth: FC<LucideProps>
   export const Eye: FC<LucideProps>
   export const FileText: FC<LucideProps>
+  export const Globe: FC<LucideProps>
   export const Heading2: FC<LucideProps>
   export const Italic: FC<LucideProps>
   export const List: FC<LucideProps>

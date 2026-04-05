@@ -10,7 +10,7 @@ export function CountryHero({ country }: { country: Country }) {
           <Badge>國家知識庫</Badge>
           <div className="space-y-3">
             <p className="text-4xl">{country.flag_emoji}</p>
-            <h1 className="text-3xl font-semibold tracking-tight text-[var(--ink)] md:text-4xl">
+            <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">
               {country.name_zh}
               <span className="ml-3 text-lg font-medium text-[var(--muted-ink)]">{country.name_en}</span>
             </h1>
