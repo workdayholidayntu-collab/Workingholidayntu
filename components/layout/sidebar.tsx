@@ -1,12 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
-import { BookOpenText, Earth, Search } from "lucide-react"
+import { BookOpenText } from "lucide-react"
 import type { Country } from "@/types"
-
-const navItems = [
-  { href: "/countries", label: "國家知識庫", icon: Earth },
-  { href: "/search", label: "搜尋主題", icon: Search },
-]
 
 export function Sidebar({ countries }: { countries: Country[] }) {
   return (
@@ -17,27 +12,11 @@ export function Sidebar({ countries }: { countries: Country[] }) {
             <Image src="/logo.png" alt="" width={24} height={24} />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--brand)]">棲地無界 / WHV</p>
           </div>
-          <h2 className="text-xl font-bold text-[var(--ink)]">先決定入口，再往下展開內容與互動。</h2>
+          <h2 className="text-xl font-bold text-[var(--ink)]">從這裡快速展開各國資訊與內容。</h2>
           <p className="text-sm leading-6 text-[var(--muted-ink)]">
-            如果你是第一次進站，建議先從國家知識庫開始；如果你已經有明確問題，也可以直接走搜尋入口。
+            你可以直接從下方國家快捷入口瀏覽，也可以用右上角搜尋更快找到想看的主題。
           </p>
         </div>
-
-        <nav className="space-y-2">
-          {navItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--muted-ink)] transition hover:bg-[var(--card)] hover:text-[var(--ink)]"
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            )
-          })}
-        </nav>
 
         <div className="rounded-[28px] border border-[var(--line)] bg-[var(--card)] p-5">
           <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-[var(--ink)]">

@@ -1,10 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Earth, Search } from "lucide-react"
+import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const primaryNav = [
-  { href: "/countries", label: "國家知識庫", icon: Earth },
   { href: "/search", label: "搜尋", icon: Search },
 ]
 
