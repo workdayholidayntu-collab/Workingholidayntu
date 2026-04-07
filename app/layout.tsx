@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { ThemeProvider } from "@/components/providers/theme-provider"
 import { buildUrl } from "@/lib/utils"
 import "./globals.css"
 
@@ -25,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-Hant" suppressHydrationWarning>
+    <html lang="zh-Hant">
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   )

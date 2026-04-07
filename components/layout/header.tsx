@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Earth, Search } from "lucide-react"
-import { ThemeToggle } from "@/components/layout/theme-toggle"
 import { Button } from "@/components/ui/button"
 
 const primaryNav = [
@@ -11,7 +10,7 @@ const primaryNav = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-20 border-b border-[var(--line)] bg-[rgba(244,248,251,0.82)] backdrop-blur dark:bg-[rgba(17,26,36,0.82)]">
+    <header className="sticky top-0 z-20 border-b border-[var(--line)] bg-[rgba(244,248,251,0.82)] backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex min-w-0 flex-1 items-center gap-3">
@@ -34,11 +33,6 @@ export function Header() {
                 </Link>
               )
             })}
-            <ThemeToggle />
-          </div>
-
-          <div className="flex items-center gap-2 md:hidden">
-            <ThemeToggle />
           </div>
         </div>
 

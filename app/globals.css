@@ -17,23 +17,6 @@
   --sky-dusk: #8491C3;
 }
 
-.dark {
-  --background: #111a24;
-  --foreground: #e4f0f6;
-  --card: rgba(22, 34, 48, 0.92);
-  --line: rgba(188, 225, 223, 0.12);
-  --ink: #e4f0f6;
-  --muted-ink: #9fbfcc;
-  --sand: rgba(0, 134, 204, 0.14);
-  --brand: #8AC4DE;
-  --brand-strong: #BCE1DF;
-  --sky-light: rgba(188, 225, 223, 0.18);
-  --sky-mid: rgba(138, 196, 222, 0.22);
-  --sky-deep: rgba(108, 155, 210, 0.25);
-  --sky-muted: rgba(184, 200, 209, 0.18);
-  --sky-dusk: rgba(132, 145, 195, 0.22);
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
