@@ -10,7 +10,7 @@ export default function NotFound() {
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--brand)]">404 / 棲地無界</p>
           <h1 className="text-3xl font-semibold text-[var(--ink)]">這一頁還沒有被整理進棲地無界。</h1>
           <p className="text-base leading-8 text-[var(--muted-ink)]">
-            你可以先回到首頁、進入 17 國知識庫，或從搜尋開始找目前已整理好的內容。
+            你可以先回到首頁、進入 18 國知識庫，或從搜尋開始找目前已整理好的內容。
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/">

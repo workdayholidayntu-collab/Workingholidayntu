@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { getCountries } from "@/lib/data"
 
-export const metadata = { title: "內容上架版型" }
+export const metadata = { title: "文章上架" }
 
 export default async function NewPostPage() {
   const countries = await getCountries()
@@ -13,17 +13,17 @@ export default async function NewPostPage() {
     <div className="space-y-8">
       <section className="space-y-4">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand)]">內容管理</p>
-        <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">文章上架版型預覽</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">文章上架</h1>
         <p className="max-w-3xl text-base leading-8 text-[var(--muted-ink)]">
-          這一頁是團隊上架文章的版型預覽，確認欄位結構與編輯器使用感。所有內容由棲地無界團隊整理後統一上架。
+          所有內容由棲地無界團隊整理後統一上架，確保資訊品質與一致性。
         </p>
       </section>
 
       <Card>
         <CardHeader>
-          <CardTitle>上架版型骨架</CardTitle>
+          <CardTitle>文章欄位</CardTitle>
           <CardDescription>
-            以下欄位與編輯器僅供版型確認，實際上架由團隊操作。
+            填寫以下欄位後由團隊審核上架。
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">

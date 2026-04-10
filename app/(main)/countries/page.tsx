@@ -13,8 +13,8 @@ export default async function CountriesPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-4">
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand)]">17 國固定入口</p>
-        <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">從國家模板切入，再延伸到真實過來人經驗。</h1>
+        <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand)]">18 國知識庫</p>
+        <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">選一個國家，開始你的打工度假準備。</h1>
         <p className="max-w-3xl text-base leading-8 text-[var(--muted-ink)]">
           棲地無界把簽證、預算、住宿、求職與人脈建議收斂成固定模板，讓你不必在 FB、論壇與私人筆記之間來回拼湊。
         </p>
@@ -57,7 +57,7 @@ export default async function CountriesPage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-3xl font-bold tracking-tight text-[var(--ink)]">社群最新整理</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-[var(--ink)]">最新文章</h2>
         <div className="grid gap-4 lg:grid-cols-3">
           {posts.map((post) => (
             <PostCard

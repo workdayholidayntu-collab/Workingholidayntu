@@ -31,14 +31,14 @@ export default async function HomePage() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/80">
-            這個 prototype 先把整體網站架構、導覽方式與內容版型建立起來。你可以先從國家知識庫進站，再延伸到文章、搜尋、個人頁與投稿流程。
+            我們把散落在 Facebook 社團、PTT 和私人筆記裡的打工度假資訊，整理成結構化的知識庫。從國家簽證、落地預算到過來人的真實經驗，讓你出發前就有方向。
           </p>
 
           {/* Horizontal metrics strip */}
           <div className="mt-10 flex flex-wrap gap-8 text-white/90">
             <div className="flex items-center gap-3">
               <Globe className="h-5 w-5 text-white/60" />
-              <span className="text-3xl font-bold">17</span>
+              <span className="text-3xl font-bold">18</span>
               <span className="text-sm text-white/70">國知識庫</span>
             </div>
             <div className="h-10 w-px bg-white/20 hidden sm:block" />
@@ -51,7 +51,7 @@ export default async function HomePage() {
             <div className="flex items-center gap-3">
               <UsersRound className="h-5 w-5 text-white/60" />
               <span className="text-3xl font-bold">{posts.length}+</span>
-              <span className="text-sm text-white/70">示範內容</span>
+              <span className="text-sm text-white/70">篇過來人經驗</span>
             </div>
           </div>
 
@@ -87,7 +87,7 @@ export default async function HomePage() {
         <section className="space-y-5">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand)]">Latest Stories</p>
-            <h2 className="mt-1 text-3xl font-bold tracking-tight text-[var(--ink)]">文章卡片與內容頁版型預覽</h2>
+            <h2 className="mt-1 text-3xl font-bold tracking-tight text-[var(--ink)]">過來人的實戰筆記</h2>
           </div>
           <div className="grid gap-5 lg:grid-cols-3">
             {posts.map((post) => (
@@ -112,14 +112,14 @@ export default async function HomePage() {
           <FeatureCard
             icon={UsersRound}
             title="找人脈"
-            subtitle="個人頁"
-            description="之後可以延伸成旅伴、學長姐與可提供協助的互助網絡。"
+            subtitle="過來人網絡"
+            description="找到去過同一個國家的學長姐，直接請教最在地的經驗與建議。"
           />
           <FeatureCard
             icon={MessageCircleMore}
             title="找互動"
             subtitle="文章討論"
-            description="每篇文章都能延伸成留言與交流場景，方便之後接 live 功能。"
+            description="每篇文章下方都能留言補充，讓經驗持續被下一位出發者完善。"
           />
         </section>
       </div>

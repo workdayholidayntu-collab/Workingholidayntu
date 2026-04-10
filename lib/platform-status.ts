@@ -12,14 +12,14 @@ export async function getPlatformStatus(): Promise<PlatformStatus> {
   if (mode === "mock") {
     return {
       mode: "demo",
-      message: "目前是網站 prototype 模式，畫面內容以展示結構、版型與導覽流程為主。",
+      message: "網站內容持續更新中，部分國家資訊仍在整理。",
     }
   }
 
   if (!hasSupabaseEnv) {
     return {
       mode: "demo",
-      message: "目前仍以 prototype 內容顯示；等 Supabase 環境變數補齊後，就能開始嘗試讀取真實資料。",
+      message: "網站內容持續更新中，部分功能尚在建置。",
     }
   }
 
@@ -27,7 +27,7 @@ export async function getPlatformStatus(): Promise<PlatformStatus> {
     if (!shouldUseLiveData()) {
       return {
         mode: "demo",
-        message: "目前維持在 prototype 預覽模式，真實資料尚未強制接入。",
+        message: "網站內容持續更新中，部分國家資訊仍在整理。",
       }
     }
 
@@ -37,18 +37,18 @@ export async function getPlatformStatus(): Promise<PlatformStatus> {
     if (error) {
       return {
         mode: "demo",
-        message: "已偵測到 Supabase 連線設定，但資料表或權限尚未完整就緒，因此先回退到 prototype 內容。",
+        message: "資料庫連線設定中，目前顯示預設內容。",
       }
     }
 
     return {
       mode: "live",
-      message: "目前正在讀取 Supabase 的真實資料，prototype 已進入 live 驗證階段。",
+      message: "已連線資料庫，顯示最新內容。",
     }
   } catch {
     return {
       mode: "demo",
-      message: "目前暫時無法取得 Supabase 資料，因此先顯示 prototype 內容，避免影響整體瀏覽。",
+      message: "暫時無法連線資料庫，目前顯示預設內容。",
     }
   }
 }

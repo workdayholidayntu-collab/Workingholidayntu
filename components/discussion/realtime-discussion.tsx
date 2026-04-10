@@ -93,9 +93,9 @@ export function RealtimeDiscussion({
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="flex items-center gap-2">
           <MessageCircleMore className="h-5 w-5 text-[var(--brand)]" />
-          討論區預覽
+          討論區
         </CardTitle>
-        <span className="text-xs text-[var(--muted-ink)]">先保留留言互動的位置與版型，之後再決定是否接上即時功能。</span>
+        <span className="text-xs text-[var(--muted-ink)]">有經驗可以補充？留言幫到下一位出發者。</span>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="space-y-4">
@@ -118,7 +118,7 @@ export function RealtimeDiscussion({
         </div>
         <div className="space-y-3">
           <Textarea
-            placeholder={currentUserId ? "把你想像中的留言語氣、互動節奏或回覆內容留在這裡。" : "這裡先用來預覽留言區的閱讀與輸入樣子。"}
+            placeholder={currentUserId ? "分享你的經驗或補充細節，幫助下一位出發者。" : "登入後即可留言。"}
             value={content}
             onChange={(event) => setContent(event.target.value)}
             disabled={!currentUserId || submitting}

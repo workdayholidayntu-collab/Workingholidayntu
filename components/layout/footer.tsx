@@ -8,7 +8,7 @@ export function Footer() {
           <Image src="/logo.png" alt="棲地無界" width={28} height={28} className="opacity-60" />
           <p>棲地無界 WHV 以台灣視角整理打工度假資訊，讓經驗被保存、被接住，也被傳下去。</p>
         </div>
-        <p className="text-xs text-[var(--muted-ink)]/70">Prototype built with Next.js</p>
+        <p className="text-xs text-[var(--muted-ink)]/70">© 棲地無界 WHV</p>
       </div>
     </footer>
   )

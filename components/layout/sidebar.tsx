@@ -21,7 +21,7 @@ export function Sidebar({ countries }: { countries: Country[] }) {
         <div className="rounded-[28px] border border-[var(--line)] bg-[var(--card)] p-5">
           <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-[var(--ink)]">
             <BookOpenText className="h-4 w-4 text-[var(--brand)]" />
-            17 國快速入口
+            18 國快速入口
           </div>
           <div className="grid grid-cols-2 gap-2">
             {countries.map((country) => (
