@@ -1,3 +1,48 @@
+-- Storage buckets + countries seed data
+-- countries 視為相對穩定的字典資料，直接用 migration 管理。
+
+-- ============================================================================
+-- 1. Storage buckets
+-- ============================================================================
+
+insert into storage.buckets (id, name, public)
+values
+  ('avatars', 'avatars', true),
+  ('post-images', 'post-images', true)
+on conflict (id) do nothing;
+
+drop policy if exists "storage_public_read" on storage.objects;
+create policy "storage_public_read"
+  on storage.objects
+  for select
+  using (bucket_id in ('avatars', 'post-images'));
+
+drop policy if exists "storage_authenticated_insert" on storage.objects;
+create policy "storage_authenticated_insert"
+  on storage.objects
+  for insert
+  with check (
+    auth.role() = 'authenticated'
+    and bucket_id in ('avatars', 'post-images')
+  );
+
+drop policy if exists "storage_owner_update" on storage.objects;
+create policy "storage_owner_update"
+  on storage.objects
+  for update
+  using (auth.uid()::text = owner::text)
+  with check (auth.uid()::text = owner::text);
+
+drop policy if exists "storage_owner_delete" on storage.objects;
+create policy "storage_owner_delete"
+  on storage.objects
+  for delete
+  using (auth.uid()::text = owner::text);
+
+-- ============================================================================
+-- 2. Countries seed
+-- ============================================================================
+
 insert into public.countries (slug, name_zh, name_en, flag_emoji, visa_info)
 values
   ('australia', '澳洲', 'Australia', '🇦🇺', jsonb_build_object('overview', '澳洲是台灣最熱門的打工度假目的地之一。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷'))),
@@ -16,48 +61,10 @@ values
   ('czechia', '捷克', 'Czechia', '🇨🇿', jsonb_build_object('overview', '捷克常見問題是住宿與語言落差。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷'))),
   ('slovakia', '斯洛伐克', 'Slovakia', '🇸🇰', jsonb_build_object('overview', '斯洛伐克資料較少，社群互助尤其重要。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷'))),
   ('hungary', '匈牙利', 'Hungary', '🇭🇺', jsonb_build_object('overview', '匈牙利適合偏好較低生活成本的歐洲城市。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷'))),
-  ('poland', '波蘭', 'Poland', '🇵🇱', jsonb_build_object('overview', '波蘭適合想從中東歐開始建立海外生活經驗的人。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷')))
+  ('poland', '波蘭', 'Poland', '🇵🇱', jsonb_build_object('overview', '波蘭適合想從中東歐開始建立海外生活經驗的人。', 'ageRange', '18-30 歲', 'quota', '依年度公告', 'stayDuration', '12 個月', 'estimatedBudget', '12-18 萬台幣', 'processingTime', '2-8 週', 'steps', jsonb_build_array('確認資格', '備妥財力與保險', '安排落地住宿'), 'checklist', jsonb_build_array('護照', '財力證明', '保險', '履歷'))),
+  ('usa', '美國', 'United States', '🇺🇸', jsonb_build_object('overview', '美國以 J1 學生暑期打工度假為主，限定學生身份。', 'ageRange', '在學學生', 'quota', '依代辦公告', 'stayDuration', '最長 4 個月 + 30 天旅遊', 'estimatedBudget', '15-25 萬台幣', 'processingTime', '3-6 個月', 'steps', jsonb_build_array('找代辦', '取得 DS-2019', '辦理 J1 簽證'), 'checklist', jsonb_build_array('護照', '在學證明', '財力證明', 'J1 簽證')))
 on conflict (slug) do update set
   name_zh = excluded.name_zh,
   name_en = excluded.name_en,
   flag_emoji = excluded.flag_emoji,
   visa_info = excluded.visa_info;
-
-insert into storage.buckets (id, name, public)
-values
-  ('avatars', 'avatars', true),
-  ('post-images', 'post-images', true)
-on conflict (id) do nothing;
-
-drop policy if exists "storage_public_read" on storage.objects;
-create policy "storage_public_read"
-on storage.objects
-for select
-using (bucket_id in ('avatars', 'post-images'));
-
-drop policy if exists "storage_authenticated_insert" on storage.objects;
-create policy "storage_authenticated_insert"
-on storage.objects
-for insert
-with check (auth.role() = 'authenticated' and bucket_id in ('avatars', 'post-images'));
-
-drop policy if exists "storage_owner_update" on storage.objects;
-create policy "storage_owner_update"
-on storage.objects
-for update
-using (auth.uid()::text = owner::text)
-with check (auth.uid()::text = owner::text);
-
-do $$
-begin
-  if not exists (
-    select 1
-    from pg_publication_tables
-    where pubname = 'supabase_realtime'
-      and schemaname = 'public'
-      and tablename = 'discussions'
-  ) then
-    alter publication supabase_realtime add table public.discussions;
-  end if;
-end
-$$;

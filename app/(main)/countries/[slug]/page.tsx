@@ -1,19 +1,42 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { CountryHero } from "@/components/country/country-hero"
 import { PostCard } from "@/components/post/post-card"
 import { getApprovedPosts, getProfiles, requireCountry } from "@/lib/data"
+import { buildUrl } from "@/lib/utils"
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+interface CountryPageProps {
+  params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: CountryPageProps): Promise<Metadata> {
   const { slug } = await params
   const country = await requireCountry(slug)
+  const url = buildUrl(`/countries/${country.slug}`)
+  const description =
+    country.visa_info.overview ?? `在棲地無界查看 ${country.name_zh} 的簽證、預算與過來人經驗。`
+  const title = `${country.flag_emoji ?? ""} ${country.name_zh} 打工度假知識庫`.trim()
 
   return {
-    title: `${country.name_zh} 打工度假知識庫`,
-    description: `在棲地無界查看 ${country.name_zh} 的簽證、預算與過來人經驗。`,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url,
+      locale: "zh_TW",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   }
 }
 
-export default async function CountryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CountryPage({ params }: CountryPageProps) {
   const { slug } = await params
   const [country, countryPosts, profiles] = await Promise.all([
     requireCountry(slug),

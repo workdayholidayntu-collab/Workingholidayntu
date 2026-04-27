@@ -1,11 +1,19 @@
 import Link from "next/link"
-import { Earth, FileText, UserRound } from "lucide-react"
+import { Earth, FileText, Tag, UserRound, X } from "lucide-react"
 import { Avatar } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { searchPlatform } from "@/lib/data"
+import { getTopTags, searchPlatform } from "@/lib/data"
 
 export const metadata = { title: "搜尋" }
+
+function buildSearchHref({ q, tag }: { q?: string; tag?: string }): string {
+  const params = new URLSearchParams()
+  if (q) params.set("q", q)
+  if (tag) params.set("tag", tag)
+  const qs = params.toString()
+  return qs ? `/search?${qs}` : "/search"
+}
 
 export default async function SearchPage({
   searchParams,
@@ -14,27 +22,64 @@ export default async function SearchPage({
 }) {
   const params = await searchParams
   const query = typeof params.q === "string" ? params.q : ""
-  const results = await searchPlatform(query)
+  const tag = typeof params.tag === "string" ? params.tag : ""
+  const [results, topTags] = await Promise.all([
+    searchPlatform({ query, tag }),
+    getTopTags(),
+  ])
 
   return (
     <div className="space-y-8">
       <section className="space-y-4">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-[var(--brand)]">Search</p>
         <h1 className="text-4xl font-bold tracking-tight text-[var(--ink)] sm:text-5xl">從國家、文章、過來人三條線一起找答案。</h1>
-        <form className="max-w-2xl">
+        <form className="max-w-2xl" action="/search">
           <Input name="q" defaultValue={query} placeholder="輸入國家、主題、人物，例如：澳洲 求職" />
+          {tag ? <input type="hidden" name="tag" value={tag} /> : null}
         </form>
-        <div className="flex flex-wrap gap-2">
-          {["澳洲 農場", "日本 住宿", "紐西蘭 預算", "加拿大 履歷"].map((suggestion) => (
+        {tag ? (
+          <div className="flex flex-wrap items-center gap-3 text-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[var(--brand)]/10 px-4 py-2 font-semibold text-[var(--brand)]">
+              <Tag className="h-3.5 w-3.5" />
+              標籤：#{tag}
+            </span>
             <Link
-              key={suggestion}
-              href={`/search?q=${encodeURIComponent(suggestion)}`}
-              className="rounded-full border border-[var(--line)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--muted-ink)] transition hover:border-[var(--brand)] hover:text-[var(--brand)]"
+              href={buildSearchHref({ q: query })}
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--muted-ink)] hover:text-[var(--ink)]"
             >
-              {suggestion}
+              <X className="h-3 w-3" />
+              清除標籤
             </Link>
-          ))}
-        </div>
+          </div>
+        ) : null}
+        {topTags.length > 0 ? (
+          <div className="space-y-2">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--muted-ink)]">
+              熱門標籤
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {topTags.map(({ tag: topTag, count }) => {
+                const active = topTag.toLowerCase() === tag.toLowerCase()
+                return (
+                  <Link
+                    key={topTag}
+                    href={buildSearchHref({ q: query, tag: active ? undefined : topTag })}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                      active
+                        ? "border-[var(--brand)] bg-[var(--brand)] text-white"
+                        : "border-[var(--line)] bg-[var(--card)] text-[var(--muted-ink)] hover:border-[var(--brand)] hover:text-[var(--brand)]"
+                    }`}
+                  >
+                    #{topTag}
+                    <span className={`ml-1.5 ${active ? "text-white/80" : "text-[var(--muted-ink)]/70"}`}>
+                      {count}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        ) : null}
       </section>
 
       <section className="grid gap-6 lg:grid-cols-3">

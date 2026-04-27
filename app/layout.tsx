@@ -1,6 +1,22 @@
 import type { Metadata } from "next"
+import { Newsreader, Noto_Sans_TC } from "next/font/google"
 import { buildUrl } from "@/lib/utils"
 import "./globals.css"
+
+const sans = Noto_Sans_TC({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-sans-tc",
+  display: "swap",
+})
+
+const serifLatin = Newsreader({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-serif-latin",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(buildUrl("/")),
@@ -24,10 +40,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="zh-Hant">
-      <body>
-        {children}
-      </body>
+    <html
+      lang="zh-Hant"
+      className={`${sans.variable} ${serifLatin.variable}`}
+    >
+      <body>{children}</body>
     </html>
   )
 }

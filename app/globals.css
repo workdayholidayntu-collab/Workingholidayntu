@@ -20,7 +20,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Segoe UI", "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans-tc), "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
+  /* Editorial heading: Newsreader for Latin, Noto Sans TC fallback for CJK
+     (CJK keeps the same shape as body for visual consistency) */
+  --font-serif: var(--font-serif-latin), var(--font-sans-tc), "Noto Sans TC", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -47,12 +50,56 @@ a {
   text-decoration: none;
 }
 
+/* Editorial typography utilities --------------------------------------- */
+
+.font-editorial {
+  font-family: var(--font-serif);
+  font-feature-settings: "ss01", "kern";
+}
+
+.heading-editorial {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* Drop cap: first paragraph of an article body */
+.prose-whv > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  float: left;
+  font-size: 3.4rem;
+  line-height: 0.9;
+  padding: 0.3rem 0.6rem 0 0;
+  color: var(--ink);
+}
+
+/* Pull quote: <blockquote> in article body */
+.prose-whv blockquote {
+  margin: 2rem 0;
+  padding: 0.25rem 1.25rem;
+  border-left: 3px solid var(--brand);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prose-whv blockquote p {
+  color: var(--ink);
+  line-height: 1.7;
+}
+
 .prose-whv h2 {
-  margin-top: 1.75rem;
+  margin-top: 2.5rem;
   margin-bottom: 0.75rem;
-  font-size: 1.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--ink);
+  letter-spacing: -0.005em;
 }
 
 .prose-whv p,
@@ -61,8 +108,39 @@ a {
   color: var(--muted-ink);
 }
 
+.prose-whv p {
+  margin-bottom: 1.1rem;
+}
+
 .prose-whv ul {
   margin: 1rem 0;
   list-style: disc;
   padding-left: 1.4rem;
+}
+
+.prose-whv strong {
+  color: var(--ink);
+}
+
+.prose-whv em {
+  color: var(--muted-ink);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -11,6 +11,7 @@ export default async function CountriesPage() {
 
   const postCountByCountry = new Map<string, number>()
   for (const post of posts) {
+    if (!post.country_slug) continue
     postCountByCountry.set(post.country_slug, (postCountByCountry.get(post.country_slug) ?? 0) + 1)
   }
 

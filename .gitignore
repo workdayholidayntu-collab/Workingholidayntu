@@ -38,9 +38,15 @@ dev.err.log
 # local agent metadata
 .agents
 
+# Claude Code MCP config (contains tokens)
+.mcp.json
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# database backups
+/backups

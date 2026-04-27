@@ -14,7 +14,7 @@ export function NavTabs() {
   const pathname = usePathname()
 
   return (
-    <nav className="flex gap-4">
+    <nav className="-mb-px flex gap-6 overflow-x-auto md:gap-8">
       {tabs.map((tab) => {
         const isActive =
           tab.href === "/"
@@ -26,10 +26,10 @@ export function NavTabs() {
             key={tab.href}
             href={tab.href}
             className={cn(
-              "border-b-2 px-1 py-1.5 text-sm font-medium transition",
+              "shrink-0 whitespace-nowrap py-1 text-[13px] font-medium tracking-wide transition",
               isActive
-                ? "border-[var(--ink)] text-[var(--ink)]"
-                : "border-transparent text-[var(--muted-ink)] hover:border-[var(--line)] hover:text-[var(--ink)]",
+                ? "text-[var(--ink)]"
+                : "text-[var(--muted-ink)] hover:text-[var(--ink)]",
             )}
           >
             {tab.label}
