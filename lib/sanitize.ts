@@ -1,7 +1,11 @@
 // Server-side HTML sanitization for user-submitted post / comment content.
 // Per SECURITY.md §5.2.3: sanitize before storing AND before rendering.
+//
+// Uses sanitize-html (pure JS, no jsdom) instead of isomorphic-dompurify so
+// the bundle works inside Vercel's Node serverless runtime — jsdom transitively
+// pulls @exodus/bytes which is ESM-only and breaks `require()` there.
 
-import DOMPurify from "isomorphic-dompurify"
+import sanitizeHtml from "sanitize-html"
 
 const ALLOWED_TAGS = [
   "p",
@@ -23,27 +27,27 @@ const ALLOWED_TAGS = [
   "a",
 ]
 
-const ALLOWED_ATTR = ["href", "title", "target", "rel"]
-
 export function sanitizeUserHtml(html: string | null | undefined): string {
   if (!html) return ""
 
-  const cleaned = DOMPurify.sanitize(html, {
-    ALLOWED_TAGS,
-    ALLOWED_ATTR,
-    ALLOWED_URI_REGEXP: /^(?:https?|mailto):/i,
-    FORBID_TAGS: ["script", "style", "iframe", "object", "embed", "form", "img"],
-    FORBID_ATTR: ["onerror", "onload", "onclick", "onmouseover", "style"],
-  })
-
-  // Force external links to open safely.
-  return cleaned.replace(
-    /<a\s+([^>]*?)href="(https?:\/\/[^"]+)"([^>]*)>/gi,
-    (_match, before: string, href: string, after: string) => {
-      const attrs = `${before}${after}`.replace(/\s+(target|rel)="[^"]*"/gi, "")
-      return `<a ${attrs.trim()} href="${href}" target="_blank" rel="noopener noreferrer nofollow">`
+  return sanitizeHtml(html, {
+    allowedTags: ALLOWED_TAGS,
+    allowedAttributes: {
+      a: ["href", "title", "target", "rel"],
     },
-  )
+    allowedSchemes: ["http", "https", "mailto"],
+    disallowedTagsMode: "discard",
+    transformTags: {
+      a: (tagName, attribs) => ({
+        tagName: "a",
+        attribs: {
+          ...attribs,
+          target: "_blank",
+          rel: "noopener noreferrer nofollow",
+        },
+      }),
+    },
+  })
 }
 
 export function plainTextFromHtml(html: string | null | undefined): string {
