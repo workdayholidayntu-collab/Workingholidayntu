@@ -1,6 +1,10 @@
 import { Footer } from "@/components/layout/footer"
 import { Header } from "@/components/layout/header"
 
+// Header reads the current viewer per-request via Supabase auth cookies, so
+// every (main) route is inherently dynamic and must skip static prerender.
+export const dynamic = "force-dynamic"
+
 export default function MainLayout({
   children,
 }: Readonly<{
