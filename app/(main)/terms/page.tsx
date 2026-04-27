@@ -103,7 +103,7 @@ export default function TermsPage() {
         <Link href="/about" className="font-semibold text-[var(--brand)] underline-offset-4 hover:underline">
           關於我們
         </Link>{" "}
-        頁面找到聯絡方式，或寄信至 hello@borderless-habitat.tw。
+        頁面找到聯絡方式，或寄信至 workdayholiday.ntu@gmail.com。
       </p>
     </article>
   )

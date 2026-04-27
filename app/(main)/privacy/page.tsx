@@ -84,7 +84,7 @@ export default function PrivacyPage() {
             <li>請求刪除帳號及其關聯資料（不影響已合法公開、且涉及他人權益的內容）。</li>
             <li>停止特定處理（例如系統通知）。</li>
           </ul>
-          <p>請寄信至 hello@borderless-habitat.tw 行使上述權利，我們將於 30 天內處理。</p>
+          <p>請寄信至 workdayholiday.ntu@gmail.com 行使上述權利，我們將於 30 天內處理。</p>
         </Block>
 
         <Block title="6. Cookie 與本機儲存">
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
         <Link href="/about" className="font-semibold text-[var(--brand)] underline-offset-4 hover:underline">
           關於我們
         </Link>{" "}
-        頁面找到聯絡方式，或寄信至 hello@borderless-habitat.tw。
+        頁面找到聯絡方式，或寄信至 workdayholiday.ntu@gmail.com。
       </p>
     </article>
   )
