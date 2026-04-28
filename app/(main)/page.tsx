@@ -36,7 +36,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted-ink)]">
           棲地無界整理台灣人海外打工度假的第一手經驗：簽證、找工、住宿、社交。
-          每一篇都是訪談，不是攻略文，不是業配。
+          每一篇都是過來人的真實經驗和心血。
         </p>
       </section>
 
