@@ -47,7 +47,7 @@ export function Footer() {
               <span className="text-sm font-bold text-[var(--ink)]">棲地無界</span>
             </Link>
             <p className="max-w-sm text-sm leading-6 text-[var(--muted-ink)]">
-              以台灣視角整理打工度假資訊，讓經驗被保存、被接住，也被傳下去。
+              讓每個回來的人，成為下一個出發者的底氣。
             </p>
           </div>
 

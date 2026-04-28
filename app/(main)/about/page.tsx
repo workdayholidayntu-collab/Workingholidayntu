@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export const metadata = {
   title: "關於我們 — 棲地無界 Borderless Habitat",
-  description: "棲地無界是以台灣視角整理打工度假資訊的平台，讓經驗被保存、被接住，也被傳下去。",
+  description: "讓每個回來的人，成為下一個出發者的底氣。",
 }
 
 export default function AboutPage() {
@@ -16,7 +16,7 @@ export default function AboutPage() {
           </h1>
         </div>
         <p className="max-w-2xl text-base leading-8 text-[var(--muted-ink)]">
-          棲地無界 Borderless Habitat 是一個以台灣視角出發的打工度假資訊平台。我們相信，每一段出走的經驗都值得被記錄，每一個即將啟程的人都值得被接住。
+          讓每個回來的人，成為下一個出發者的底氣。
         </p>
       </section>
 
