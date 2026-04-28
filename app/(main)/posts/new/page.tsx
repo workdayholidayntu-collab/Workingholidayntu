@@ -38,7 +38,7 @@ export default async function NewPostPage({ searchParams }: NewPostPageProps) {
             撰寫 · Borderless Habitat
           </p>
           <h1 className="heading-editorial mt-3 text-[clamp(2rem,4vw,3rem)] text-[var(--ink)]">
-            把你走過的事，寫成<br />下一個出發者用得上的指南。
+            讓每個回來的人，<br />成為下一個出發者的底氣。
           </h1>
         </div>
         <div className="rounded-2xl bg-[var(--sand)] p-5 text-sm leading-7 text-[var(--muted-ink)]">
