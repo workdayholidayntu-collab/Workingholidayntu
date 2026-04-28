@@ -30,7 +30,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-[var(--brand)]">
           Borderless Habitat
         </p>
-        <h1 className="heading-editorial mt-4 text-[clamp(2.4rem,5.5vw,4.25rem)] text-[var(--ink)]">
+        <h1 className="heading-editorial mt-4 text-[clamp(2.2rem,4.5vw,3.5rem)] text-[var(--ink)]">
           讓每個回來的人，<br className="hidden sm:block" />
           成為下一個出發者的底氣。
         </h1>
