@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { createCommentAction, deleteCommentAction } from "@/app/actions"
 import { Avatar } from "@/components/ui/avatar"
+import { LinkPendingInline } from "@/components/ui/link-pending-inline"
 import { SubmitButton } from "@/components/ui/submit-button"
 import { ReportButton } from "@/components/report/report-button"
 import { sanitizeHtmlFragment, formatDate } from "@/lib/utils"
@@ -126,8 +127,9 @@ function CommentBody({ comment, postSlug, viewer }: CommentBodyProps) {
           {author ? (
             <Link
               href={`/users/${comment.author_id}`}
-              className="font-semibold text-[var(--ink)] hover:text-[var(--brand)]"
+              className="inline-flex items-center gap-1 font-semibold text-[var(--ink)] hover:text-[var(--brand)]"
             >
+              <LinkPendingInline />
               {authorName}
             </Link>
           ) : (

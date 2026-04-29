@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { formatDate } from "@/lib/utils"
 import type { Country, Post, Profile } from "@/types"
 
@@ -24,8 +25,9 @@ export function PostCard({ post, country, author }: PostCardProps) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="group flex gap-5 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5 transition hover:-translate-y-0.5 hover:shadow-md sm:gap-6 sm:p-6"
+      className="group relative flex gap-5 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5 transition hover:-translate-y-0.5 hover:shadow-md sm:gap-6 sm:p-6"
     >
+      <LinkPendingOverlay />
       <div className="shrink-0 text-center">
         <Image
           src={avatarSrc}
@@ -83,6 +85,7 @@ export function PostCardFeatured({ post, country, author }: PostCardProps) {
       href={`/posts/${post.slug}`}
       className="group relative block overflow-hidden rounded-3xl bg-[var(--sand)] p-6 transition hover:shadow-lg sm:p-10"
     >
+      <LinkPendingOverlay />
       <div className="grid gap-6 sm:grid-cols-[1.4fr_1fr] sm:items-end">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand)]">
@@ -139,8 +142,9 @@ export function PostListItem({ post, country }: PostCardProps) {
   return (
     <Link
       href={`/posts/${post.slug}`}
-      className="group flex items-baseline gap-4 border-b border-[var(--line)] py-4 transition last:border-b-0 hover:bg-white/40"
+      className="group relative flex items-baseline gap-4 border-b border-[var(--line)] py-4 transition last:border-b-0 hover:bg-white/40"
     >
+      <LinkPendingOverlay className="!rounded-none" />
       {country ? (
         <span
           className="shrink-0 text-xs font-semibold uppercase tracking-wider text-[var(--muted-ink)]"

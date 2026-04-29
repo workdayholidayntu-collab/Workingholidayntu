@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { LinkPendingInline } from "@/components/ui/link-pending-inline"
 import { cn } from "@/lib/utils"
 
 const tabs = [
@@ -26,12 +27,13 @@ export function NavTabs() {
             key={tab.href}
             href={tab.href}
             className={cn(
-              "shrink-0 whitespace-nowrap py-1 text-[13px] font-medium tracking-wide transition",
+              "inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap py-1 text-[13px] font-medium tracking-wide transition",
               isActive
                 ? "text-[var(--ink)]"
                 : "text-[var(--muted-ink)] hover:text-[var(--ink)]",
             )}
           >
+            <LinkPendingInline />
             {tab.label}
           </Link>
         )

@@ -3,6 +3,7 @@ import { Earth, FileText, Tag, UserRound, X } from "lucide-react"
 import { Avatar } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { getTopTags, searchPlatform } from "@/lib/data"
 
 export const metadata = { title: "搜尋" }
@@ -87,7 +88,8 @@ export default async function SearchPage({
         <ResultColumn icon={Earth} title="國家" count={results.countries.length} accentColor="var(--sky-light)">
           {results.countries.length === 0 ? <EmptyState label="還沒有符合的國家結果" /> : null}
           {results.countries.map((country) => (
-            <Link key={country.slug} href={`/countries/${country.slug}`} className="group block rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:shadow-sm">
+            <Link key={country.slug} href={`/countries/${country.slug}`} className="group relative block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:shadow-sm">
+              <LinkPendingOverlay />
               <div className="flex items-center gap-3">
                 <span className="text-3xl">{country.flag_emoji}</span>
                 <div>
@@ -103,7 +105,8 @@ export default async function SearchPage({
         <ResultColumn icon={FileText} title="文章" count={results.posts.length} accentColor="var(--sky-mid)">
           {results.posts.length === 0 ? <EmptyState label="還沒有符合的文章結果" /> : null}
           {results.posts.map((post) => (
-            <Link key={post.id} href={`/posts/${post.slug}`} className="group block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] transition hover:-translate-y-0.5 hover:shadow-sm">
+            <Link key={post.id} href={`/posts/${post.slug}`} className="group relative block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] transition hover:-translate-y-0.5 hover:shadow-sm">
+              <LinkPendingOverlay />
               <div className="flex">
                 <div className="w-1.5 shrink-0 bg-gradient-to-b from-[var(--sky-mid)] to-[var(--sky-deep)]" />
                 <div className="p-4">

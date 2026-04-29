@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { Avatar } from "@/components/ui/avatar"
+import { LinkPendingInline } from "@/components/ui/link-pending-inline"
+import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { CommentThread } from "@/components/comment/comment-thread"
 import { ReportButton } from "@/components/report/report-button"
 import {
@@ -99,8 +101,9 @@ function RelatedPosts({ posts, countries }: RelatedPostsProps) {
             <Link
               key={p.id}
               href={`/posts/${p.slug}`}
-              className="group flex items-baseline gap-4 border-b border-[var(--line)] py-4 transition last:border-b-0"
+              className="group relative flex items-baseline gap-4 border-b border-[var(--line)] py-4 transition last:border-b-0"
             >
+              <LinkPendingOverlay className="!rounded-none" />
               {country ? (
                 <span className="shrink-0 text-xs font-semibold uppercase tracking-wider text-[var(--muted-ink)]">
                   {country.flag_emoji} {country.name_zh}
@@ -151,8 +154,9 @@ function AuthorCard({ authorName, author }: AuthorCardProps) {
           {author ? (
             <Link
               href={`/users/${author.id}`}
-              className="mt-3 inline-flex text-xs font-semibold text-[var(--brand)] underline-offset-4 hover:underline"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--brand)] underline-offset-4 hover:underline"
             >
+              <LinkPendingInline />
               查看 {authorName} 的所有故事 →
             </Link>
           ) : null}
