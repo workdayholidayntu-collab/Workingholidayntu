@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { createCommentAction, deleteCommentAction } from "@/app/actions"
 import { Avatar } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { ReportButton } from "@/components/report/report-button"
 import { sanitizeHtmlFragment, formatDate } from "@/lib/utils"
 import type { Comment, Viewer } from "@/types"
@@ -196,9 +196,9 @@ function CommentComposer({ postId, parentId, compact }: CommentComposerProps) {
         className="w-full rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-sm leading-6 text-[var(--ink)] outline-none transition placeholder:text-[var(--muted-ink)]/70 focus:border-[var(--brand)]"
       />
       <div className="flex items-center gap-3">
-        <Button type="submit" className="!px-4 !py-2 !text-sm">
+        <SubmitButton className="!px-4 !py-2 !text-sm" pendingLabel="送出中…">
           {parentId ? "送出回覆" : "送出留言"}
-        </Button>
+        </SubmitButton>
         {!compact ? (
           <span className="text-[11px] text-[var(--muted-ink)]">
             送出代表你願意以實名身份留言。重複留言或廣告會被隱藏。

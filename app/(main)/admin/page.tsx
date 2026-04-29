@@ -5,7 +5,7 @@ import {
   setReportStatusAction,
   setTrustLevelAction,
 } from "@/app/actions"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import {
   getCurrentViewer,
   getPendingPosts,
@@ -89,23 +89,23 @@ export default async function AdminPage() {
                   <form action={setPostStatusAction}>
                     <input type="hidden" name="postId" value={post.id} />
                     <input type="hidden" name="status" value="approved" />
-                    <Button type="submit" className="!px-3 !py-1.5 !text-xs">
+                    <SubmitButton className="!px-3 !py-1.5 !text-xs" pendingLabel="處理中…">
                       通過刊出
-                    </Button>
+                    </SubmitButton>
                   </form>
                   <form action={setPostStatusAction}>
                     <input type="hidden" name="postId" value={post.id} />
                     <input type="hidden" name="status" value="rejected" />
-                    <Button type="submit" variant="outline" className="!px-3 !py-1.5 !text-xs">
+                    <SubmitButton variant="outline" className="!px-3 !py-1.5 !text-xs" pendingLabel="處理中…">
                       退稿
-                    </Button>
+                    </SubmitButton>
                   </form>
                   <form action={setPostStatusAction}>
                     <input type="hidden" name="postId" value={post.id} />
                     <input type="hidden" name="status" value="hidden" />
-                    <Button type="submit" variant="ghost" className="!px-3 !py-1.5 !text-xs">
+                    <SubmitButton variant="ghost" className="!px-3 !py-1.5 !text-xs" pendingLabel="處理中…">
                       隱藏
-                    </Button>
+                    </SubmitButton>
                   </form>
                 </div>
               </li>
@@ -152,16 +152,16 @@ export default async function AdminPage() {
                   <form action={setReportStatusAction}>
                     <input type="hidden" name="reportId" value={report.id} />
                     <input type="hidden" name="status" value="resolved" />
-                    <Button type="submit" className="!px-3 !py-1.5 !text-xs">
+                    <SubmitButton className="!px-3 !py-1.5 !text-xs" pendingLabel="處理中…">
                       已處理（resolve）
-                    </Button>
+                    </SubmitButton>
                   </form>
                   <form action={setReportStatusAction}>
                     <input type="hidden" name="reportId" value={report.id} />
                     <input type="hidden" name="status" value="dismissed" />
-                    <Button type="submit" variant="outline" className="!px-3 !py-1.5 !text-xs">
+                    <SubmitButton variant="outline" className="!px-3 !py-1.5 !text-xs" pendingLabel="處理中…">
                       無效（dismiss）
-                    </Button>
+                    </SubmitButton>
                   </form>
                 </div>
               </li>
@@ -208,9 +208,9 @@ export default async function AdminPage() {
                   <option value={2}>2 · 資深</option>
                   <option value={3}>3 · 團隊</option>
                 </select>
-                <Button type="submit" variant="outline" className="!px-3 !py-1.5 !text-xs">
+                <SubmitButton variant="outline" className="!px-3 !py-1.5 !text-xs" pendingLabel="套用中…">
                   套用
-                </Button>
+                </SubmitButton>
               </form>
             </li>
           ))}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { loginAction, signInWithGoogleAction } from "@/app/actions"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { getApprovedPosts, getCountries, getProfiles } from "@/lib/data"
 import { formatDate } from "@/lib/utils"
 
@@ -92,15 +92,15 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             />
           </div>
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Button type="submit">使用 Email 登入</Button>
+            <SubmitButton pendingLabel="登入中…">使用 Email 登入</SubmitButton>
             <span className="text-xs text-[var(--muted-ink)]">或</span>
           </div>
         </form>
 
         <form action={signInWithGoogleAction}>
-          <Button type="submit" variant="outline">
+          <SubmitButton variant="outline" pendingLabel="連線 Google…">
             使用 Google 登入
-          </Button>
+          </SubmitButton>
         </form>
 
         <p className="text-sm text-[var(--muted-ink)]">

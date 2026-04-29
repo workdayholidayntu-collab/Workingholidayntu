@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { registerAction, signInWithGoogleAction } from "@/app/actions"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { TurnstileWidget } from "@/components/turnstile/turnstile-widget"
 import { TURNSTILE_SITE_KEY } from "@/lib/turnstile"
 
@@ -122,15 +122,15 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             <TurnstileWidget siteKey={TURNSTILE_SITE_KEY} />
           ) : null}
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            <Button type="submit">建立帳號</Button>
+            <SubmitButton pendingLabel="建立中…">建立帳號</SubmitButton>
             <span className="text-xs text-[var(--muted-ink)]">或</span>
           </div>
         </form>
 
         <form action={signInWithGoogleAction}>
-          <Button type="submit" variant="outline">
+          <SubmitButton variant="outline" pendingLabel="連線 Google…">
             使用 Google 註冊
-          </Button>
+          </SubmitButton>
         </form>
 
         <p className="text-xs leading-6 text-[var(--muted-ink)]">

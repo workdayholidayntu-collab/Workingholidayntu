@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react"
 import { updateProfileAction } from "@/app/actions"
 import { Avatar } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { getCountries, getCurrentViewer, getOwnPosts } from "@/lib/data"
 import { formatDate } from "@/lib/utils"
 import type { Post, PostStatus } from "@/types"
@@ -163,7 +163,7 @@ export default async function ProfilePage({ searchParams }: ProfilePageProps) {
           </div>
 
           <div className="flex items-center gap-3 pt-2">
-            <Button type="submit">儲存資料</Button>
+            <SubmitButton pendingLabel="儲存中…">儲存資料</SubmitButton>
             <Link
               href="/posts/new"
               className="text-sm font-semibold text-[var(--muted-ink)] transition hover:text-[var(--ink)]"

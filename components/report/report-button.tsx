@@ -1,4 +1,5 @@
 import { createReportAction } from "@/app/actions"
+import { SubmitButton } from "@/components/ui/submit-button"
 
 interface ReportButtonProps {
   targetType: "post" | "comment"
@@ -31,12 +32,12 @@ export function ReportButton({ targetType, targetId, returnTo }: ReportButtonPro
           placeholder="請描述為何此內容違規（≥ 5 字）"
           className="w-full rounded-xl border border-[var(--line)] bg-white px-3 py-2 text-xs text-[var(--ink)] outline-none focus:border-[var(--brand)]"
         />
-        <button
-          type="submit"
-          className="cursor-pointer rounded-full bg-red-600 px-3 py-1.5 text-[11px] font-semibold text-white hover:bg-red-700"
+        <SubmitButton
+          className="!bg-red-600 hover:!bg-red-700 !text-white !shadow-none !px-3 !py-1.5 !text-[11px]"
+          pendingLabel="送出中…"
         >
           送出檢舉
-        </button>
+        </SubmitButton>
         <p className="text-[10px] text-[var(--muted-ink)]">
           累積三件未處理檢舉時，內容會自動隱藏待棲地無界編輯部審核。
         </p>

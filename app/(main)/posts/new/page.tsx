@@ -2,7 +2,7 @@ import { redirect } from "next/navigation"
 import { createPostAction } from "@/app/actions"
 import { PostEditor } from "@/components/post/post-editor"
 import { TurnstileWidget } from "@/components/turnstile/turnstile-widget"
-import { Button } from "@/components/ui/button"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { getCountries, getCurrentViewer } from "@/lib/data"
 import { TURNSTILE_SITE_KEY } from "@/lib/turnstile"
 
@@ -136,9 +136,9 @@ export default async function NewPostPage({ searchParams }: NewPostPageProps) {
         ) : null}
 
         <div className="flex flex-wrap items-center gap-3 border-t border-[var(--line)] pt-6">
-          <Button type="submit">
+          <SubmitButton pendingLabel="送出中…">
             {willAutoPublish ? "送出並發表" : "送出待審"}
-          </Button>
+          </SubmitButton>
           <p className="text-xs text-[var(--muted-ink)]">
             送出代表你同意內容將以你的身份顯示，並可被其他使用者閱讀、留言。
           </p>
