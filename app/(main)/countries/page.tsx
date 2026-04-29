@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { getApprovedPosts, getCountries } from "@/lib/data"
 
 export const metadata = {
@@ -33,7 +34,7 @@ export default async function CountriesPage() {
             <Link
               key={country.slug}
               href={`/countries/${country.slug}`}
-              className="group flex items-start gap-4 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5 transition hover:-translate-y-0.5 hover:shadow-md"
+              className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5 transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <span className="text-3xl">{country.flag_emoji}</span>
               <div className="min-w-0 flex-1">
@@ -50,6 +51,7 @@ export default async function CountriesPage() {
                   </p>
                 )}
               </div>
+              <LinkPendingOverlay />
             </Link>
           )
         })}
