@@ -3,11 +3,12 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LinkPendingInline } from "@/components/ui/link-pending-inline"
+import { COUNTRIES_ENABLED } from "@/lib/features"
 import { cn } from "@/lib/utils"
 
 const tabs = [
   { label: "過來人故事", href: "/" },
-  { label: "國家知識庫", href: "/countries" },
+  ...(COUNTRIES_ENABLED ? [{ label: "國家知識庫", href: "/countries" }] : []),
   { label: "關於我們", href: "/about" },
 ]
 

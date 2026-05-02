@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { COUNTRIES_ENABLED } from "@/lib/features"
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -16,7 +17,7 @@ const linkGroups = [
     title: "瀏覽",
     links: [
       { label: "過來人故事", href: "/" },
-      { label: "國家知識庫", href: "/countries" },
+      ...(COUNTRIES_ENABLED ? [{ label: "國家知識庫", href: "/countries" }] : []),
       { label: "搜尋", href: "/search" },
     ],
   },

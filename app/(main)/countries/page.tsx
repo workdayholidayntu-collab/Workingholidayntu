@@ -1,6 +1,8 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { getApprovedPosts, getCountries } from "@/lib/data"
+import { COUNTRIES_ENABLED } from "@/lib/features"
 
 export const metadata = {
   title: "國家知識庫 — 棲地無界 Borderless Habitat",
@@ -8,6 +10,8 @@ export const metadata = {
 }
 
 export default async function CountriesPage() {
+  if (!COUNTRIES_ENABLED) notFound()
+
   const [countries, posts] = await Promise.all([getCountries(), getApprovedPosts()])
 
   const postCountByCountry = new Map<string, number>()

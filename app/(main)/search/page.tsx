@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { LinkPendingOverlay } from "@/components/ui/link-pending-overlay"
 import { getTopTags, searchPlatform } from "@/lib/data"
+import { COUNTRIES_ENABLED } from "@/lib/features"
 
 export const metadata = { title: "搜尋" }
 
@@ -83,23 +84,24 @@ export default async function SearchPage({
         ) : null}
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-3">
-        {/* ── Country cards: flag prominent ── */}
-        <ResultColumn icon={Earth} title="國家" count={results.countries.length} accentColor="var(--sky-light)">
-          {results.countries.length === 0 ? <EmptyState label="還沒有符合的國家結果" /> : null}
-          {results.countries.map((country) => (
-            <Link key={country.slug} href={`/countries/${country.slug}`} className="group relative block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:shadow-sm">
-              <LinkPendingOverlay />
-              <div className="flex items-center gap-3">
-                <span className="text-3xl">{country.flag_emoji}</span>
-                <div>
-                  <p className="font-semibold text-[var(--ink)] group-hover:text-[var(--brand)]">{country.name_zh}</p>
-                  <p className="text-sm text-[var(--muted-ink)]">{country.name_en}</p>
+      <section className={`grid gap-6 ${COUNTRIES_ENABLED ? "lg:grid-cols-3" : "lg:grid-cols-2"}`}>
+        {COUNTRIES_ENABLED ? (
+          <ResultColumn icon={Earth} title="國家" count={results.countries.length} accentColor="var(--sky-light)">
+            {results.countries.length === 0 ? <EmptyState label="還沒有符合的國家結果" /> : null}
+            {results.countries.map((country) => (
+              <Link key={country.slug} href={`/countries/${country.slug}`} className="group relative block overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:shadow-sm">
+                <LinkPendingOverlay />
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">{country.flag_emoji}</span>
+                  <div>
+                    <p className="font-semibold text-[var(--ink)] group-hover:text-[var(--brand)]">{country.name_zh}</p>
+                    <p className="text-sm text-[var(--muted-ink)]">{country.name_en}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </ResultColumn>
+              </Link>
+            ))}
+          </ResultColumn>
+        ) : null}
 
         {/* ── Post cards: left color bar ── */}
         <ResultColumn icon={FileText} title="文章" count={results.posts.length} accentColor="var(--sky-mid)">

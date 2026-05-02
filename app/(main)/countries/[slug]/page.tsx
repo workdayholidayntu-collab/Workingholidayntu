@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { CountryHero } from "@/components/country/country-hero"
 import { PostCard } from "@/components/post/post-card"
 import { getApprovedPosts, getProfiles, requireCountry } from "@/lib/data"
+import { COUNTRIES_ENABLED } from "@/lib/features"
 import { buildUrl } from "@/lib/utils"
 
 interface CountryPageProps {
@@ -10,6 +12,8 @@ interface CountryPageProps {
 }
 
 export async function generateMetadata({ params }: CountryPageProps): Promise<Metadata> {
+  if (!COUNTRIES_ENABLED) return { title: "Not Found", robots: { index: false } }
+
   const { slug } = await params
   const country = await requireCountry(slug)
   const url = buildUrl(`/countries/${country.slug}`)
@@ -37,6 +41,8 @@ export async function generateMetadata({ params }: CountryPageProps): Promise<Me
 }
 
 export default async function CountryPage({ params }: CountryPageProps) {
+  if (!COUNTRIES_ENABLED) notFound()
+
   const { slug } = await params
   const [country, countryPosts, profiles] = await Promise.all([
     requireCountry(slug),
