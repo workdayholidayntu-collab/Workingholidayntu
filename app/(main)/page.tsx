@@ -1,7 +1,6 @@
 import { CountryFilter } from "@/components/country/country-filter"
 import { PostCard, PostCardFeatured } from "@/components/post/post-card"
 import { getApprovedPosts, getCountries, getProfiles } from "@/lib/data"
-import { COUNTRIES_ENABLED } from "@/lib/features"
 
 interface HomePageProps {
   searchParams: Promise<Record<string, string | string[] | undefined>>
@@ -40,11 +39,9 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </p>
       </section>
 
-      {COUNTRIES_ENABLED ? (
-        <section>
-          <CountryFilter countries={countries} activeSlug={activeCountry} />
-        </section>
-      ) : null}
+      <section>
+        <CountryFilter countries={countries} activeSlug={activeCountry} />
+      </section>
 
       {posts.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-[var(--line)] bg-[var(--sand)]/40 px-6 py-12 text-center text-sm text-[var(--muted-ink)]">

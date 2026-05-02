@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 const tabs = [
   { label: "過來人故事", href: "/" },
   ...(COUNTRIES_ENABLED ? [{ label: "國家知識庫", href: "/countries" }] : []),
+  { label: "搜尋", href: "/search" },
   { label: "關於我們", href: "/about" },
 ]
 
